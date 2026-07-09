@@ -163,14 +163,14 @@ for m in mk:
     pl_g.append(df_f[p2+"_n"].sum() if p2 and (p2+"_n") in df_f.columns else 0)
     cy_g.append(df_f[cy2+"_n"].sum() if cy2 and (cy2+"_n") in df_f.columns else 0)
 
-fig = make_sub categoryplots(rows=1, cols=2, sub categoryplot_titles=("Units", "GMS"))
-fig.add_trace(go.Scategoryegoryter(x=mk,y=ly_u,name="LY",model namee="lines+markers",line=dict(color="#94a3b8",dash="dot")),1,1)
-fig.add_trace(go.Scategoryegoryter(x=mk,y=pl_u,name="Plan",model namee="lines+markers",line=dict(color="#f59e0b",dash="dash")),1,1)
-fig.add_trace(go.Scategoryegoryter(x=mk,y=cy_u,name="CY",model namee="lines+markers",line=dict(color="#38bdf8",width=3),fill="tozeroy",fillcolor="rgba(56,189,248,0.1)"),1,1)
-fig.add_trace(go.Scategoryegoryter(x=mk,y=ly_g,model namee="lines+markers",line=dict(color="#94a3b8",dash="dot"),showlegend=False),1,2)
-fig.add_trace(go.Scategoryegoryter(x=mk,y=pl_g,model namee="lines+markers",line=dict(color="#f59e0b",dash="dash"),showlegend=False),1,2)
-fig.add_trace(go.Scategoryegoryter(x=mk,y=cy_g,model namee="lines+markers",line=dict(color="#10b981",width=3),fill="tozeroy",fillcolor="rgba(16,185,129,0.1)"),1,2)
-fig.update_layout(paper_bgcolor="#1e293b",plot_bgcolor="#1e293b",font_color="#e2e8f0",height=350,hovermodel namee="x unified")
+fig = make_subplots(rows=1, cols=2, subplot_titles=("Units", "GMS"))
+fig.add_trace(go.Scatter(x=mk,y=ly_u,name="LY",mode="lines+markers",line=dict(color="#94a3b8",dash="dot")),1,1)
+fig.add_trace(go.Scatter(x=mk,y=pl_u,name="Plan",mode="lines+markers",line=dict(color="#f59e0b",dash="dash")),1,1)
+fig.add_trace(go.Scatter(x=mk,y=cy_u,name="CY",mode="lines+markers",line=dict(color="#38bdf8",width=3),fill="tozeroy",fillcolor="rgba(56,189,248,0.1)"),1,1)
+fig.add_trace(go.Scatter(x=mk,y=ly_g,mode="lines+markers",line=dict(color="#94a3b8",dash="dot"),showlegend=False),1,2)
+fig.add_trace(go.Scatter(x=mk,y=pl_g,mode="lines+markers",line=dict(color="#f59e0b",dash="dash"),showlegend=False),1,2)
+fig.add_trace(go.Scatter(x=mk,y=cy_g,mode="lines+markers",line=dict(color="#10b981",width=3),fill="tozeroy",fillcolor="rgba(16,185,129,0.1)"),1,2)
+fig.update_layout(paper_bgcolor="#1e293b",plot_bgcolor="#1e293b",font_color="#e2e8f0",height=350,hovermode="x unified")
 fig.update_xaxes(gridcolor="#334155");fig.update_yaxes(gridcolor="#334155")
 st.plotly_chart(fig, use_container_width=True)
 
@@ -224,7 +224,7 @@ if C.get("brand") and cg:
     if cg25:
         bd = df_f.groupby(C["brand"]).agg({cg25:"sum",cg:"sum"}).reset_index().nlargest(15, cg)
         bd.columns = ["Brand","FY 25-26","FY 26-27"]
-        fig = px.bar(bd.melt(id_vars="Brand"), x="Brand", y="value", color="variable", barmodel namee="group")
+        fig = px.bar(bd.melt(id_vars="Brand"), x="Brand", y="value", color="variable", barmode="group")
         sf(fig); fig.update_xaxes(tickangle=-30)
         st.plotly_chart(fig, use_container_width=True)
 
@@ -295,9 +295,9 @@ if cg:
     if C.get("model name") and C["model name"] != ic: dc.append(C["model name"])
     dc.append(cg)
     c1,c2 = st.columns(2)
-    c1.sub categoryheader("🌟 Top 10")
+    c1.subheader("🌟 Top 10")
     c1.dataframe(df_f.nlargest(10, cg)[dc], use_container_width=True)
-    c2.sub categoryheader("⚠️ Bottom 10")
+    c2.subheader("⚠️ Bottom 10")
     c2.dataframe(df_f.nsmallest(10, cg)[dc], use_container_width=True)
 
 # ============= QUARTER SUMMARY =============
