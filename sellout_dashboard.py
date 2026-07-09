@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-from plotly.sub categoryplots import make_sub categoryplots
+from plotly.sub plots import make_sub plots
 import os
 
 st.set_page_config(page_title="Zebronics SellOut - SellIn Tracker Dashboard", page_icon="📊", layout="wide")
