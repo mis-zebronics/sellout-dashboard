@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-from plotly.subplots import make_subplots
+from plotly.sub categoryplots import make_sub categoryplots
 import os
 
 st.set_page_config(page_title="Zebronics SellOut - SellIn Tracker Dashboard", page_icon="📊", layout="wide")
@@ -31,7 +31,7 @@ def load_data():
     h = 0
     for i, row in raw.iterrows():
         r = " ".join([str(x) if x is not None else "" for x in row.tolist()]).lower()
-        if "item" in r and ("vertical" in r or "brand" in r):
+        if "item" in r and ("verticalical" in r or "brand" in r):
             h = i
             break
     
@@ -62,13 +62,13 @@ def find_col_priority(df, search_text, exclude_words=None):
 
 C = {}
 C["id"] = find_col_priority(df, "item id") or find_col_priority(df, "sku")
-C["vert"] = find_col_priority(df, "vertical")
-C["plat"] = find_col_priority(df, "platform")
+C["vertical"] = find_col_priority(df, "verticalical")
+C["platform"] = find_col_priority(df, "platformform")
 C["brand"] = find_col_priority(df, "brand")
 C["sell"] = find_col_priority(df, "seller")
-C["cat"] = find_col_priority(df, "category")
-C["sub"] = find_col_priority(df, "sub category") or find_col_priority(df, "subcategory")
-C["mod"] = find_col_priority(df, "model")
+C["categoryegory"] = find_col_priority(df, "categoryegoryegory")
+C["sub category"] = find_col_priority(df, "sub category categoryegoryegory") or find_col_priority(df, "sub categorycategoryegoryegory")
+C["model name"] = find_col_priority(df, "model nameel")
 C["kam"] = find_col_priority(df, "kam")
 C["u25"] = find_col_priority(df, "25-26", ["gms","plan","ach","growth","mar","feb","jan","dec","nov","oct","sep","aug","jul","jun","may","apr"])
 C["u26"] = find_col_priority(df, "26-27", ["gms","plan","ach","growth","mar","feb","jan","dec","nov","oct","sep","aug","jul","jun","may","apr"])
@@ -79,7 +79,7 @@ with st.sidebar.expander("🔍 Column Mapping", expanded=False):
     for k, v in C.items():
         st.write(f"**{k}**: {v if v else 'NOT FOUND'}")
 
-# ============= CONVERT NUMERIC =============
+# ============= CONvertical NUMERIC =============
 def tn(df, c):
     if not c or c not in df.columns: return None
     return pd.to_numeric(df[c].astype(str).str.replace("%","",regex=False).str.replace(",","",regex=False).str.replace("Rs","",regex=False).str.replace(" ","",regex=False), errors="coerce").fillna(0)
@@ -122,7 +122,7 @@ def sf(fig):
 # ============= FILTERS =============
 st.sidebar.header("🔍 Filters")
 df_f = df.copy()
-for f in ["vert","plat","brand","cat","sub","kam","sell","mod"]:
+for f in ["vertical","platform","brand","categoryegory","sub category","kam","sell","model name"]:
     if C.get(f):
         opts = ["All"] + sorted([str(x) for x in df_f[C[f]].dropna().unique()])[:200]
         sel = st.sidebar.selectbox(f.title(), opts, key=f)
@@ -163,14 +163,14 @@ for m in mk:
     pl_g.append(df_f[p2+"_n"].sum() if p2 and (p2+"_n") in df_f.columns else 0)
     cy_g.append(df_f[cy2+"_n"].sum() if cy2 and (cy2+"_n") in df_f.columns else 0)
 
-fig = make_subplots(rows=1, cols=2, subplot_titles=("Units", "GMS"))
-fig.add_trace(go.Scatter(x=mk,y=ly_u,name="LY",mode="lines+markers",line=dict(color="#94a3b8",dash="dot")),1,1)
-fig.add_trace(go.Scatter(x=mk,y=pl_u,name="Plan",mode="lines+markers",line=dict(color="#f59e0b",dash="dash")),1,1)
-fig.add_trace(go.Scatter(x=mk,y=cy_u,name="CY",mode="lines+markers",line=dict(color="#38bdf8",width=3),fill="tozeroy",fillcolor="rgba(56,189,248,0.1)"),1,1)
-fig.add_trace(go.Scatter(x=mk,y=ly_g,mode="lines+markers",line=dict(color="#94a3b8",dash="dot"),showlegend=False),1,2)
-fig.add_trace(go.Scatter(x=mk,y=pl_g,mode="lines+markers",line=dict(color="#f59e0b",dash="dash"),showlegend=False),1,2)
-fig.add_trace(go.Scatter(x=mk,y=cy_g,mode="lines+markers",line=dict(color="#10b981",width=3),fill="tozeroy",fillcolor="rgba(16,185,129,0.1)"),1,2)
-fig.update_layout(paper_bgcolor="#1e293b",plot_bgcolor="#1e293b",font_color="#e2e8f0",height=350,hovermode="x unified")
+fig = make_sub categoryplots(rows=1, cols=2, sub categoryplot_titles=("Units", "GMS"))
+fig.add_trace(go.Scategoryegoryter(x=mk,y=ly_u,name="LY",model namee="lines+markers",line=dict(color="#94a3b8",dash="dot")),1,1)
+fig.add_trace(go.Scategoryegoryter(x=mk,y=pl_u,name="Plan",model namee="lines+markers",line=dict(color="#f59e0b",dash="dash")),1,1)
+fig.add_trace(go.Scategoryegoryter(x=mk,y=cy_u,name="CY",model namee="lines+markers",line=dict(color="#38bdf8",width=3),fill="tozeroy",fillcolor="rgba(56,189,248,0.1)"),1,1)
+fig.add_trace(go.Scategoryegoryter(x=mk,y=ly_g,model namee="lines+markers",line=dict(color="#94a3b8",dash="dot"),showlegend=False),1,2)
+fig.add_trace(go.Scategoryegoryter(x=mk,y=pl_g,model namee="lines+markers",line=dict(color="#f59e0b",dash="dash"),showlegend=False),1,2)
+fig.add_trace(go.Scategoryegoryter(x=mk,y=cy_g,model namee="lines+markers",line=dict(color="#10b981",width=3),fill="tozeroy",fillcolor="rgba(16,185,129,0.1)"),1,2)
+fig.update_layout(paper_bgcolor="#1e293b",plot_bgcolor="#1e293b",font_color="#e2e8f0",height=350,hovermodel namee="x unified")
 fig.update_xaxes(gridcolor="#334155");fig.update_yaxes(gridcolor="#334155")
 st.plotly_chart(fig, use_container_width=True)
 
@@ -178,7 +178,7 @@ st.plotly_chart(fig, use_container_width=True)
 st.markdown("### 📊 MoM Growth %")
 mom_u = [((cy_u[i]-ly_u[i])/ly_u[i]*100) if ly_u[i] else 0 for i in range(12)]
 mom_g = [((cy_g[i]-ly_g[i])/ly_g[i]*100) if ly_g[i] else 0 for i in range(12)]
-fig = make_subplots(rows=1, cols=2, subplot_titles=("Units Growth %", "GMS Growth %"))
+fig = make_sub categoryplots(rows=1, cols=2, sub categoryplot_titles=("Units Growth %", "GMS Growth %"))
 cu_colors = ["#10b981" if v>=0 else "#ef4444" for v in mom_u]
 cg_colors = ["#10b981" if v>=0 else "#ef4444" for v in mom_g]
 fig.add_trace(go.Bar(x=mk, y=mom_u, marker_color=cu_colors, text=[f"{v:.1f}%" for v in mom_u], textposition="outside"), 1, 1)
@@ -191,7 +191,7 @@ st.plotly_chart(fig, use_container_width=True)
 st.markdown("### 🎯 Achievement % vs Plan")
 ach_u = [(cy_u[i]/pl_u[i]*100) if pl_u[i] else 0 for i in range(12)]
 ach_g = [(cy_g[i]/pl_g[i]*100) if pl_g[i] else 0 for i in range(12)]
-fig = make_subplots(rows=1, cols=2, subplot_titles=("Units Ach %", "GMS Ach %"))
+fig = make_sub categoryplots(rows=1, cols=2, sub categoryplot_titles=("Units Ach %", "GMS Ach %"))
 ca_u = ["#10b981" if v>=100 else "#f59e0b" if v>=80 else "#ef4444" for v in ach_u]
 ca_g = ["#10b981" if v>=100 else "#f59e0b" if v>=80 else "#ef4444" for v in ach_g]
 fig.add_trace(go.Bar(x=mk, y=ach_u, marker_color=ca_u, text=[f"{v:.0f}%" for v in ach_u], textposition="outside"), 1, 1)
@@ -201,17 +201,17 @@ fig.update_layout(paper_bgcolor="#1e293b", plot_bgcolor="#1e293b", font_color="#
 fig.update_xaxes(gridcolor="#334155"); fig.update_yaxes(gridcolor="#334155")
 st.plotly_chart(fig, use_container_width=True)
 
-# ============= TOP 20 MODELS =============
+# ============= TOP 20 model nameELS =============
 st.markdown("---")
-st.markdown("### 🏆 Top 20 Models by GMS")
+st.markdown("### 🏆 Top 20 model nameels by GMS")
 cg = None
 if C.get("g26"):
     if C["g26"]+"_n" in df_f.columns: cg = C["g26"]+"_n"
     elif C["g26"] in df_f.columns: cg = C["g26"]
-if C.get("mod") and cg:
-    mp = df_f.groupby(C["mod"]).agg({cg:"sum"}).reset_index().nlargest(20, cg)
-    fig = px.bar(mp, x=cg, y=C["mod"], orientation="h", color=cg, color_continuous_scale="Blues")
-    sf(fig); fig.update_layout(height=500, yaxis={"categoryorder":"total ascending"})
+if C.get("model name") and cg:
+    mp = df_f.groupby(C["model name"]).agg({cg:"sum"}).reset_index().nlargest(20, cg)
+    fig = px.bar(mp, x=cg, y=C["model name"], orientation="h", color=cg, color_continuous_scale="Blues")
+    sf(fig); fig.update_layout(height=500, yaxis={"categoryegoryegoryorder":"total ascending"})
     st.plotly_chart(fig, use_container_width=True)
 
 # ============= BRAND =============
@@ -224,47 +224,47 @@ if C.get("brand") and cg:
     if cg25:
         bd = df_f.groupby(C["brand"]).agg({cg25:"sum",cg:"sum"}).reset_index().nlargest(15, cg)
         bd.columns = ["Brand","FY 25-26","FY 26-27"]
-        fig = px.bar(bd.melt(id_vars="Brand"), x="Brand", y="value", color="variable", barmode="group")
+        fig = px.bar(bd.melt(id_vars="Brand"), x="Brand", y="value", color="variable", barmodel namee="group")
         sf(fig); fig.update_xaxes(tickangle=-30)
         st.plotly_chart(fig, use_container_width=True)
 
-# ============= CATEGORY =============
-st.markdown("### 📂 Category Distribution")
-if C.get("cat") and cg:
+# ============= categoryegoryEGORY =============
+st.markdown("### 📂 categoryegoryegory Distribution")
+if C.get("categoryegory") and cg:
     r1,r2 = st.columns(2)
     with r1:
-        cd = df_f.groupby(C["cat"])[cg].sum().reset_index().nlargest(15, cg)
-        fig = px.pie(cd, names=C["cat"], values=cg, hole=0.4)
+        cd = df_f.groupby(C["categoryegory"])[cg].sum().reset_index().nlargest(15, cg)
+        fig = px.pie(cd, names=C["categoryegory"], values=cg, hole=0.4)
         sf(fig)
         st.plotly_chart(fig, use_container_width=True)
-    if C.get("sub"):
+    if C.get("sub category"):
         with r2:
-            sd = df_f.groupby([C["cat"], C["sub"]])[cg].sum().reset_index().nlargest(15, cg)
-            fig = px.bar(sd, x=cg, y=C["sub"], orientation="h", color=C["cat"])
-            sf(fig); fig.update_layout(height=500, yaxis={"categoryorder":"total ascending"})
+            sd = df_f.groupby([C["categoryegory"], C["sub category"]])[cg].sum().reset_index().nlargest(15, cg)
+            fig = px.bar(sd, x=cg, y=C["sub category"], orientation="h", color=C["categoryegory"])
+            sf(fig); fig.update_layout(height=500, yaxis={"categoryegoryegoryorder":"total ascending"})
             st.plotly_chart(fig, use_container_width=True)
 
-# ============= CATEGORY HEATMAP =============
-if C.get("cat") and C.get("sub") and cg:
-    st.markdown("### 🌡️ Category × Sub-Category Heatmap")
-    hd = df_f.groupby([C["cat"], C["sub"]])[cg].sum().reset_index()
-    fig = px.density_heatmap(hd, x=C["cat"], y=C["sub"], z=cg, color_continuous_scale="Blues")
+# ============= categoryegoryEGORY HEATMAP =============
+if C.get("categoryegory") and C.get("sub category") and cg:
+    st.markdown("### 🌡️ categoryegoryegory × sub category-categoryegoryegory Heatmap")
+    hd = df_f.groupby([C["categoryegory"], C["sub category"]])[cg].sum().reset_index()
+    fig = px.density_heatmap(hd, x=C["categoryegory"], y=C["sub category"], z=cg, color_continuous_scale="Blues")
     sf(fig); fig.update_layout(height=400)
     st.plotly_chart(fig, use_container_width=True)
 
-# ============= VERTICAL x PLATFORM =============
-st.markdown("### 🏢 Vertical × Platform")
-if C.get("vert") and cg:
+# ============= verticalICAL x platformFORM =============
+st.markdown("### 🏢 verticalical × platformform")
+if C.get("vertical") and cg:
     r1,r2 = st.columns(2)
     with r1:
-        vd = df_f.groupby(C["vert"])[cg].sum().reset_index()
-        fig = px.pie(vd, names=C["vert"], values=cg, hole=0.4)
+        vd = df_f.groupby(C["vertical"])[cg].sum().reset_index()
+        fig = px.pie(vd, names=C["vertical"], values=cg, hole=0.4)
         sf(fig)
         st.plotly_chart(fig, use_container_width=True)
-    if C.get("plat"):
+    if C.get("platform"):
         with r2:
-            pd2 = df_f.groupby(C["plat"])[cg].sum().reset_index()
-            fig = px.pie(pd2, names=C["plat"], values=cg, hole=0.4)
+            pd2 = df_f.groupby(C["platform"])[cg].sum().reset_index()
+            fig = px.pie(pd2, names=C["platform"], values=cg, hole=0.4)
             sf(fig)
             st.plotly_chart(fig, use_container_width=True)
 
@@ -288,16 +288,16 @@ if C.get("sell") and cg:
 st.markdown("---")
 st.markdown("### ⭐ Top 10 vs Bottom 10 SKUs")
 if cg:
-    ic = C.get("id") or C.get("mod")
+    ic = C.get("id") or C.get("model name")
     dc = []
     if ic: dc.append(ic)
     if C.get("brand"): dc.append(C["brand"])
-    if C.get("mod") and C["mod"] != ic: dc.append(C["mod"])
+    if C.get("model name") and C["model name"] != ic: dc.append(C["model name"])
     dc.append(cg)
     c1,c2 = st.columns(2)
-    c1.subheader("🌟 Top 10")
+    c1.sub categoryheader("🌟 Top 10")
     c1.dataframe(df_f.nlargest(10, cg)[dc], use_container_width=True)
-    c2.subheader("⚠️ Bottom 10")
+    c2.sub categoryheader("⚠️ Bottom 10")
     c2.dataframe(df_f.nsmallest(10, cg)[dc], use_container_width=True)
 
 # ============= QUARTER SUMMARY =============
@@ -324,6 +324,6 @@ st.dataframe(qdf, use_container_width=True, hide_index=True)
 st.markdown("---")
 st.markdown("### 📋 Detailed Data")
 disp = []
-for k in ["id","vert","plat","brand","sell","cat","sub","mod","kam","u25","u26","g25","g26"]:
+for k in ["id","vertical","platform","brand","sell","categoryegory","sub category","model name","kam","u25","u26","g25","g26"]:
     if C.get(k) and C[k] in df_f.columns: disp.append(C[k])
 if disp: st.dataframe(df_f[disp].head(2000), use_container_width=True, height=500)
