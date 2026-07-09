@@ -5,8 +5,8 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import os
 
-st.set_page_config(page_title="Sellout Dashboard Pro", page_icon="📊", layout="wide")
-st.title("📊 Sellout Tracker Dashboard Pro")
+st.set_page_config(page_title="Zebronics SellOut - SellIn Tracker Dashboard", page_icon="📊", layout="wide")
+st.title("📊 Sellout Tracker Dashboard")
 
 # ============= AUTO-LOAD DATA (NO UPLOAD NEEDED) =============
 @st.cache_data
