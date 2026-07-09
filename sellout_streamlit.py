@@ -4,8 +4,8 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-st.set_page_config(page_title="Sellout Dashboard Pro", page_icon="📊", layout="wide")
-st.title("📊 Sellout Tracker Dashboard Pro")
+st.set_page_config(page_title="Zebronics SellOut - SellIn Tracker Dashboard", page_icon="📊", layout="wide")
+st.title("📊 Sellout Tracker Dashboard")
 
 col_u1, col_u2 = st.columns(2)
 with col_u1: f_curr = st.file_uploader("FY 2026-27", type=["xlsx","csv"], key="c")
