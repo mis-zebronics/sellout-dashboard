@@ -110,31 +110,19 @@ if page == "📤 Sellout Tracker":
             if c2: df[c2+"_n"] = tn(df, c2)
     
     def fmt_units(n):
-    if pd.isna(n) or n == 0:
-        return "0"
+        if pd.isna(n) or n == 0:
+            return "0"
 
-    if abs(n) >= 1e7:
-        return f"{n/1e7:.2f}Cr"
+        if abs(n) >= 1e7:
+            return f"{n/1e7:.2f}Cr"
 
-    if abs(n) >= 1e5:
-        return f"{n/1e5:.2f}L"
+        if abs(n) >= 1e5:
+            return f"{n/1e5:.2f}L"
 
-    if abs(n) >= 1e3:
-        return f"{n/1e3:.1f}K"
+        if abs(n) >= 1e3:
+            return f"{n/1e3:.1f}K"
 
-    return f"{n:.0f}"
-
-    if abs(n) >= 1e7:
-        return f"{n/1e7:.2f}Cr"
-
-    if abs(n) >= 1e5:
-        return f"{n/1e5:.2f}L"
-
-    if abs(n) >= 1e3:
-        return f"{n/1e3:.1f}K"
-
-    return f"{n:.0f}"
-
+        return f"{n:.0f}"
 
     def kc(title, value, color="#38bdf8", subtitle=""):
         return f"""
@@ -160,7 +148,6 @@ if page == "📤 Sellout Tracker":
         </div>
         """
         
-    
     def sf(fig):
         fig.update_layout(paper_bgcolor="#1e293b", plot_bgcolor="#1e293b", font=dict(color="#e2e8f0", size=10), xaxis=dict(gridcolor="#334155"), yaxis=dict(gridcolor="#334155"), margin=dict(t=20, b=50, l=50, r=20))
         return fig
@@ -185,11 +172,11 @@ if page == "📤 Sellout Tracker":
     
     st.markdown("### 📊 Overall Performance")
     c1,c2,c3,c4,c5,c6 = st.columns(6)
-    c1.markdown(kc("FY 25-26 U", fmt(u25)), unsafe_allow_html=True)
-    c2.markdown(kc("FY 26-27 U", fmt(u26), "#10b981"), unsafe_allow_html=True)
+    c1.markdown(kc("FY 25-26 U", fmt_units(u25)), unsafe_allow_html=True)
+    c2.markdown(kc("FY 26-27 U", fmt_units(u26), "#10b981"), unsafe_allow_html=True)
     c3.markdown(kc("Unit Growth", f"{uG:.2f}%", "#10b981" if uG>=0 else "#ef4444"), unsafe_allow_html=True)
-    c4.markdown(kc("FY 25-26 G", fmt(g25)), unsafe_allow_html=True)
-    c5.markdown(kc("FY 26-27 G", fmt(g26), "#10b981"), unsafe_allow_html=True)
+    c4.markdown(kc("FY 25-26 G", fmt_units(g25)), unsafe_allow_html=True)
+    c5.markdown(kc("FY 26-27 G", fmt_units(g26), "#10b981"), unsafe_allow_html=True)
     c6.markdown(kc("GMS Growth", f"{gG:.2f}%", "#10b981" if gG>=0 else "#ef4444"), unsafe_allow_html=True)
     
     st.markdown("---")
