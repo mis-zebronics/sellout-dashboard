@@ -20,7 +20,7 @@ with st.sidebar:
 
 # ============= SELLOUT DASHBOARD =============
 if page == "📤 Sellout Tracker":
-    st.title("📊 Sellout Tracker Dashboard Pro")
+    st.title("📊 Sellout Tracker Dashboard")
     
     @st.cache_data
     def load_sellout():
