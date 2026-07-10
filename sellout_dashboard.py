@@ -334,12 +334,12 @@ elif page == "📥 Sellin Tracker":
 
     st.markdown("### 📊 Overall Performance")
     c1,c2,c3,c4,c5,c6 = st.columns(6)
-    c1.markdown(kc_si("FY 24-25 U", fmt_si(u24)), unsafe_allow_html=True)
-    c2.markdown(kc_si("FY 25-26 U", fmt_si(u25), "#10b981"), unsafe_allow_html=True)
-    c3.markdown(kc_si("Unit Growth", f"{uG:.2f}%", "#10b981" if uG>=0 else "#ef4444"), unsafe_allow_html=True)
-    c4.markdown(kc_si("FY 24-25 G", fmt_si(g24)), unsafe_allow_html=True)
-    c5.markdown(kc_si("FY 25-26 G", fmt_si(g25), "#10b981"), unsafe_allow_html=True)
-    c6.markdown(kc_si("GMS Growth", f"{gG:.2f}%", "#10b981" if gG>=0 else "#ef4444"), unsafe_allow_html=True)
+    c1.markdown(kc_si("FY 24-25 Units", fmt_si(u24)), unsafe_allow_html=True)
+    c2.markdown(kc_si("FY 25-26 Units", fmt_si(u25), "#10b981"), unsafe_allow_html=True)
+    c3.markdown(kc_si("Unit Growth %", f"{uG:.2f}%", "#10b981" if uG>=0 else "#ef4444"), unsafe_allow_html=True)
+    c4.markdown(kc_si("FY 24-25 GMS", fmt_si(g24)), unsafe_allow_html=True)
+    c5.markdown(kc_si("FY 25-26 GMS", fmt_si(g25), "#10b981"), unsafe_allow_html=True)
+    c6.markdown(kc_si("GMS Growth %", f"{gG:.2f}%", "#10b981" if gG>=0 else "#ef4444"), unsafe_allow_html=True)
 
     mk_si = ["apr","may","jun","jul","aug","sep","oct","nov","dec","jan","feb","mar"]
     MC_si = {}
