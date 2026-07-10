@@ -66,8 +66,8 @@ def gc(df, pat, must=None, no=None):
 
 C = {}
 C["id"] = fc(df, "itemid", "item", "sku")
-C["verticalical"] = fc(df, "verticalicalical")
-C["platform"] = fc(df, "platformform")
+C["vertical"] = fc(df, "vertical")
+C["platform"] = fc(df, "platform")
 C["brand"] = fc(df, "brand")
 C["seller"] = fc(df, "sellerer")
 C["category"] = fc(df, "categoryegory")
@@ -127,7 +127,7 @@ def sf(fig):
 
 st.sidebar.header("Filters")
 df_f = df.copy()
-for f in ["verticalical","platform","brand","category","sub category","kam","seller","model name"]:
+for f in ["vertical","platform","brand","category","sub category","kam","seller","model name"]:
     if C.get(f):
         opts = ["All"] + sorted([str(x) for x in df_f[C[f]].dropna().unique()])[:200]
         sel = st.sidebar.selectbox(f.title(), opts, key=f)
@@ -149,12 +149,12 @@ gG = ((g26-g25)/g25*100) if g25 else 0
 
 st.markdown("### Overall Performance")
 c1,c2,c3,c4,c5,c6 = st.columns(6)
-c1.markdown(kc("FY 25-26 U", fmt(u25)), unsafe_allow_html=True)
-c2.markdown(kc("FY 26-27 U", fmt(u26), "#10b981"), unsafe_allow_html=True)
-c3.markdown(kc("Unit Growth", str(round(uG,2))+"%", "#10b981" if uG>=0 else "#ef4444"), unsafe_allow_html=True)
-c4.markdown(kc("FY 25-26 G", fmt(g25)), unsafe_allow_html=True)
-c5.markdown(kc("FY 26-27 G", fmt(g26), "#10b981"), unsafe_allow_html=True)
-c6.markdown(kc("GMS Growth", str(round(gG,2))+"%", "#10b981" if gG>=0 else "#ef4444"), unsafe_allow_html=True)
+c1.markdown(kc("FY 25-26 Units", fmt(u25)), unsafe_allow_html=True)
+c2.markdown(kc("FY 26-27 Units", fmt(u26), "#10b981"), unsafe_allow_html=True)
+c3.markdown(kc("Unit Growth %", str(round(uG,2))+"%", "#10b981" if uG>=0 else "#ef4444"), unsafe_allow_html=True)
+c4.markdown(kc("FY 25-26 GMS", fmt(g25)), unsafe_allow_html=True)
+c5.markdown(kc("FY 26-27 GMS", fmt(g26), "#10b981"), unsafe_allow_html=True)
+c6.markdown(kc("GMS Growth %", str(round(gG,2))+"%", "#10b981" if gG>=0 else "#ef4444"), unsafe_allow_html=True)
 
 st.markdown("---")
 st.markdown("### Monthly Trend: LY vs Plan vs CY")
