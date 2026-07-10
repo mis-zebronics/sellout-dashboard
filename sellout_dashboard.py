@@ -124,8 +124,29 @@ if page == "📤 Sellout Tracker":
 
     return f"{n:.0f}"
     
-    def kc(l, v, c="#38bdf8", s=""):
-        return f'<div style="background:linear-gradient(135deg,#1e293b,#334155);padding:14px;border-radius:8px;border-left:4px solid {c};margin-bottom:6px"><div style="color:#94a3b8;font-size:10px">{l}</div><div style="color:#f1f5f9;font-size:20px;font-weight:bold;margin-top:4px">{v}</div><div style="color:{c};font-size:10px;margin-top:2px">{s}</div></div>'
+    def kc(title, value, color="#38bdf8", subtitle=""):
+    return f"""
+    <div style="
+        background:linear-gradient(135deg,#1e293b,#334155);
+        padding:15px;
+        border-radius:10px;
+        border-left:4px solid {color};
+        margin-bottom:8px;">
+
+        <div style="color:#94a3b8;font-size:11px;">
+            {title}
+        </div>
+
+        <div style="color:white;font-size:28px;font-weight:bold;margin-top:6px;">
+            {value}
+        </div>
+
+        <div style="color:#cbd5e1;font-size:12px;margin-top:8px;">
+            {subtitle}
+        </div>
+
+    </div>
+    """
     
     def sf(fig):
         fig.update_layout(paper_bgcolor="#1e293b", plot_bgcolor="#1e293b", font=dict(color="#e2e8f0", size=10), xaxis=dict(gridcolor="#334155"), yaxis=dict(gridcolor="#334155"), margin=dict(t=20, b=50, l=50, r=20))
