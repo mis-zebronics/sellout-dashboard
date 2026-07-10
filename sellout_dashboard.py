@@ -136,29 +136,29 @@ if page == "📤 Sellout Tracker":
     return f"{n:.0f}"
 
 
-def kc(title, value, color="#38bdf8", subtitle=""):
-    return f"""
-    <div style="
-        background:linear-gradient(135deg,#1e293b,#334155);
-        padding:15px;
-        border-radius:10px;
-        border-left:4px solid {color};
-        margin-bottom:8px;">
+    def kc(title, value, color="#38bdf8", subtitle=""):
+        return f"""
+        <div style="
+            background:linear-gradient(135deg,#1e293b,#334155);
+            padding:15px;
+            border-radius:10px;
+            border-left:4px solid {color};
+            margin-bottom:8px;">
 
-        <div style="color:#94a3b8;font-size:11px;">
-            {title}
+            <div style="color:#94a3b8;font-size:11px;">
+                {title}
+            </div>
+
+            <div style="color:white;font-size:28px;font-weight:bold;margin-top:6px;">
+                {value}
+            </div>
+
+            <div style="color:#cbd5e1;font-size:12px;margin-top:8px;">
+                {subtitle}
+            </div>
+
         </div>
-
-        <div style="color:white;font-size:28px;font-weight:bold;margin-top:6px;">
-            {value}
-        </div>
-
-        <div style="color:#cbd5e1;font-size:12px;margin-top:8px;">
-            {subtitle}
-        </div>
-
-    </div>
-    """
+        """
         
     
     def sf(fig):
