@@ -124,6 +124,17 @@ if page == "📤 Sellout Tracker":
 
     return f"{n:.0f}"
 
+    if abs(n) >= 1e7:
+        return f"{n/1e7:.2f}Cr"
+
+    if abs(n) >= 1e5:
+        return f"{n/1e5:.2f}L"
+
+    if abs(n) >= 1e3:
+        return f"{n/1e3:.1f}K"
+
+    return f"{n:.0f}"
+
 
 def kc(title, value, color="#38bdf8", subtitle=""):
     return f"""
@@ -148,20 +159,7 @@ def kc(title, value, color="#38bdf8", subtitle=""):
 
     </div>
     """
-        <div style="color:#94a3b8;font-size:11px;">
-            {title}
-        </div>
-
-        <div style="color:white;font-size:28px;font-weight:bold;margin-top:6px;">
-            {value}
-        </div>
-
-        <div style="color:#cbd5e1;font-size:12px;margin-top:8px;">
-            {subtitle}
-        </div>
-
-    </div>
-    """
+        
     
     def sf(fig):
         fig.update_layout(paper_bgcolor="#1e293b", plot_bgcolor="#1e293b", font=dict(color="#e2e8f0", size=10), xaxis=dict(gridcolor="#334155"), yaxis=dict(gridcolor="#334155"), margin=dict(t=20, b=50, l=50, r=20))
