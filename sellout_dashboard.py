@@ -109,12 +109,20 @@ if page == "📤 Sellout Tracker":
         for k2, c2 in MC[m].items():
             if c2: df[c2+"_n"] = tn(df, c2)
     
-    def fmt(n):
-        if pd.isna(n) or n == 0: return "0"
-        if abs(n) >= 1e7: return f"₹{n/1e7:.2f}Cr"
-        if abs(n) >= 1e5: return f"₹{n/1e5:.2f}L"
-        if abs(n) >= 1e3: return f"{n/1e3:.1f}K"
-        return f"{n:.0f}"
+    def fmt_units(n):
+    if pd.isna(n) or n == 0:
+        return "0"
+
+    if abs(n) >= 1e7:
+        return f"{n/1e7:.2f}Cr"
+
+    if abs(n) >= 1e5:
+        return f"{n/1e5:.2f}L"
+
+    if abs(n) >= 1e3:
+        return f"{n/1e3:.1f}K"
+
+    return f"{n:.0f}"
     
     def kc(l, v, c="#38bdf8", s=""):
         return f'<div style="background:linear-gradient(135deg,#1e293b,#334155);padding:14px;border-radius:8px;border-left:4px solid {c};margin-bottom:6px"><div style="color:#94a3b8;font-size:10px">{l}</div><div style="color:#f1f5f9;font-size:20px;font-weight:bold;margin-top:4px">{v}</div><div style="color:{c};font-size:10px;margin-top:2px">{s}</div></div>'
